@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_home_content_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:context=".Fragment_Home">
+
+    <EditText
+        android:id="@+id/editTextUser"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="80dp"
+        android:hint="Username"
+        />
+
+    <EditText
+        android:id="@+id/editTextPass"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="150dp"
+        android:hint="Password"
+        android:password="true"
+        />
+
+    <EditText
+        android:id="@+id/editTextPass1"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="200dp"
+        android:hint="Potvrdi"
+        android:password="true"
+        />
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="300dp"
+        android:text="Submit"
+        android:onClick="Submit"
+        />
+</RelativeLayout>
