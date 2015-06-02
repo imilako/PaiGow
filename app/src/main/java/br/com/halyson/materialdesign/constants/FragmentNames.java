@@ -5,5 +5,6 @@ package br.com.halyson.materialdesign.constants;
  */
 public class FragmentNames {
     public static final String FRAGMENT_HOME_ = "fragment_default";
+    public static final String FRAGMENT_HOME_MAIN_ = "fragment_default_main";
 
 }

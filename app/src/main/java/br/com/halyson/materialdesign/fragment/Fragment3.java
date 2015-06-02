@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -34,9 +35,6 @@ public class Fragment3 extends Fragment {
         return new Fragment3();
     }
     private View mViewFragment3;
-    String fromAT0 = "startingvalue";
-    String fromAT = "startingvalue";
-    private final String USER_AGENT = "Mozilla/5.0";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -74,78 +72,10 @@ public class Fragment3 extends Fragment {
         EditText p = (EditText) mViewFragment3.findViewById(R.id.editTextPass);
         EditText r = (EditText) mViewFragment3.findViewById(R.id.editTextPass1);
 
-        //u.setText("blablablabblballabl");
-
-        AsyncTask task = new SendLogin().execute(u.getText().toString(), p.getText().toString(), r.getText().toString());
-        int waitCheck = 0;
-        while (fromAT.equals(fromAT0)) {
-            if (waitCheck > 30) {
-                break;
-            }
-            android.os.SystemClock.sleep(500);
-            waitCheck++;
-        }
-        if (waitCheck > 30) {
-            fromAT = "Time out!";
-        }
-        u.setText(fromAT);
+        AsyncTask task = new SendToServer().execute("signup", u.getText().toString(), p.getText().toString(), r.getText().toString());
+        String message = task.get().toString();
+        Toast.makeText(Fragment3.this.getActivity().getBaseContext(),
+                message, Toast.LENGTH_LONG).show();
     }
 
-    private class SendLogin extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... params) {
-            String returned = null;
-            try {
-                returned = sendPost(params[0], params[1], params[2]);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            fromAT = returned;
-            return returned;
-
-        }
-
-        private String sendPost(String username, String password, String repeat) throws Exception {
-            String url = "http://loginserver-env.elasticbeanstalk.com/signup.php";
-
-            HttpClient client = new DefaultHttpClient();
-            HttpPost post = new HttpPost(url);
-
-            // add header
-            post.setHeader("User-Agent", USER_AGENT);
-
-            List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
-            urlParameters.add(new BasicNameValuePair("username", username));
-            urlParameters.add(new BasicNameValuePair("password", password));
-            urlParameters.add(new BasicNameValuePair("repeat", repeat));
-
-            post.setEntity(new UrlEncodedFormEntity(urlParameters));
-
-            //execute send
-            HttpResponse response = client.execute(post);
-
-            BufferedReader rd = new BufferedReader(
-                    new InputStreamReader(response.getEntity().getContent()));
-
-            StringBuffer result = new StringBuffer();
-            String line = "";
-            while ((line = rd.readLine()) != null) {
-                result.append(line);
-            }
-
-            return result.toString();
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-        }
-
-        @Override
-        protected void onPreExecute() {
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-        }
-    }
 }
