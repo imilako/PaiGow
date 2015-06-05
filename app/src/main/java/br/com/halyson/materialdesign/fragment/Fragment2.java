@@ -1,6 +1,7 @@
 package br.com.halyson.materialdesign.fragment;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -60,14 +61,14 @@ public class Fragment2 extends Fragment {
         EditText u = (EditText) mViewFragment2.findViewById(R.id.editTextUser);
         EditText p = (EditText) mViewFragment2.findViewById(R.id.editTextPass);
 
-        //Button myButton = (Button) mViewFragment2.findViewById(R.id.buttonLogin);
-        //myButton.setEnabled(false);
+        Button myButton = (Button) mViewFragment2.findViewById(R.id.buttonLogin);
+        myButton.setEnabled(false);
 
         AsyncTask task = new SendToServer().execute("login", u.getText().toString(), p.getText().toString());
         String message = task.get().toString();
         Toast.makeText(Fragment2.this.getActivity().getBaseContext(),
                         message, Toast.LENGTH_LONG).show();
-        //myButton.setEnabled(true);
+        myButton.setEnabled(true);
         if (message.length() > 10) {
             /*Intent intent = new Intent(HomeActivity.this, MainActivity.class);
             startActivity(intent);*/
