@@ -1,24 +1,20 @@
 package br.com.halyson.materialdesign.fragment;
 
 import android.content.Intent;
-import android.graphics.PorterDuff;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import br.com.halyson.materialdesign.R;
-import br.com.halyson.materialdesign.activity.HomeActivity;
-import br.com.halyson.materialdesign.activity.MainActivity;
-
-import android.os.AsyncTask;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
+
+import br.com.halyson.materialdesign.R;
+import br.com.halyson.materialdesign.activity.MainActivity;
 
 /**
  * Created by halyson on 18/12/14.
@@ -33,11 +29,11 @@ public class Fragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mViewFragment2 = inflater.inflate(R.layout.fragment_2, container, false);
 
-        EditText u = (EditText) mViewFragment2.findViewById(R.id.editTextUser);
+       /* EditText u = (EditText) mViewFragment2.findViewById(R.id.editTextUser);
         EditText p = (EditText) mViewFragment2.findViewById(R.id.editTextPass);
         u.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
         p.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
-
+*/
         Button b = (Button) mViewFragment2.findViewById(R.id.buttonLogin);
         ((Button) b).setOnClickListener(new View.OnClickListener() {
 
@@ -63,14 +59,15 @@ public class Fragment2 extends Fragment {
     public void Submit () throws InterruptedException, ExecutionException, TimeoutException {
         EditText u = (EditText) mViewFragment2.findViewById(R.id.editTextUser);
         EditText p = (EditText) mViewFragment2.findViewById(R.id.editTextPass);
-        Button myButton = (Button) mViewFragment2.findViewById(R.id.buttonLogin);
-        myButton.setEnabled(false);
+
+        //Button myButton = (Button) mViewFragment2.findViewById(R.id.buttonLogin);
+        //myButton.setEnabled(false);
 
         AsyncTask task = new SendToServer().execute("login", u.getText().toString(), p.getText().toString());
         String message = task.get().toString();
         Toast.makeText(Fragment2.this.getActivity().getBaseContext(),
                         message, Toast.LENGTH_LONG).show();
-        myButton.setEnabled(true);
+        //myButton.setEnabled(true);
         if (message.length() > 10) {
             /*Intent intent = new Intent(HomeActivity.this, MainActivity.class);
             startActivity(intent);*/
@@ -78,16 +75,6 @@ public class Fragment2 extends Fragment {
             startActivity(intent);
             getActivity().finish();
         }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 
 
