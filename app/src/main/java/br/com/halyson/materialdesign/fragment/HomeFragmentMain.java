@@ -36,9 +36,11 @@ public class HomeFragmentMain extends BaseFragment  {
         return mViewHome;
     }
 
+
+
     @Override
     public void onDestroy() {
-        mHomePresenter.onDestroy();
+        //mHomePresenter.onDestroy();
         super.onDestroy();
     }
 /*

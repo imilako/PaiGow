@@ -1,5 +1,6 @@
 package br.com.halyson.materialdesign.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import br.com.halyson.materialdesign.R;
@@ -29,5 +30,13 @@ public class HomeActivity extends BaseActivity {
     protected int getTitleToolBar() {
         return R.string.app_name;
     }
+
+    /*@Override
+    public void onBackPressed() {
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
+    }*/
 
 }

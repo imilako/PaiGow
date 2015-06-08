@@ -30,11 +30,11 @@ public class Fragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mViewFragment2 = inflater.inflate(R.layout.fragment_2, container, false);
 
-       /* EditText u = (EditText) mViewFragment2.findViewById(R.id.editTextUser);
+        /*EditText u = (EditText) mViewFragment2.findViewById(R.id.editTextUser);
         EditText p = (EditText) mViewFragment2.findViewById(R.id.editTextPass);
         u.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
-        p.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
-*/
+        p.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);*/
+
         Button b = (Button) mViewFragment2.findViewById(R.id.buttonLogin);
         ((Button) b).setOnClickListener(new View.OnClickListener() {
 
