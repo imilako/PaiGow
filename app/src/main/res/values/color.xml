@@ -38,6 +38,11 @@
     <color name="ripple">#ff80ab</color>
     <color name="accent_pressed">#f50057</color>
 
+    <!-- nove boje -->
+    <color name="color_primary">#795548</color>
+    <color name="color_primary_dark">#5D4037</color>
+    <color name="color_accent">#FF5722</color>
+
 </resources>
 
 

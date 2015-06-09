@@ -43,4 +43,5 @@ dependencies {
     compile 'com.melnykov:floatingactionbutton:1.1.0'
     compile 'com.github.ksoichiro:android-observablescrollview:1.4.0'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+    compile 'com.heinrichreimersoftware.materialdrawer:library:2.1'
 }

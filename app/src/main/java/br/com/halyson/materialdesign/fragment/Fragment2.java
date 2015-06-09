@@ -15,6 +15,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
 import br.com.halyson.materialdesign.R;
+import br.com.halyson.materialdesign.activity.GameActivity;
 import br.com.halyson.materialdesign.activity.MainActivity;
 
 /**
@@ -72,7 +73,7 @@ public class Fragment2 extends Fragment {
         if (message.length() > 10) {
             /*Intent intent = new Intent(HomeActivity.this, MainActivity.class);
             startActivity(intent);*/
-            Intent intent = new Intent(getActivity(), MainActivity.class);
+            Intent intent = new Intent(getActivity(), GameActivity.class);
             startActivity(intent);
             getActivity().finish();
         }
