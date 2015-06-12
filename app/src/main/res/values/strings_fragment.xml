@@ -19,7 +19,7 @@
 
 
     <!-- Sectios Tabs -->
-    <string name="fragment_home_fragment1_title">Fragment 1</string>
+    <string name="fragment_home_fragment1_title">Welcome</string>
     <string name="fragment_home_fragment2_title">Log in</string>
     <string name="fragment_home_fragment3_title">Sign up</string>
 

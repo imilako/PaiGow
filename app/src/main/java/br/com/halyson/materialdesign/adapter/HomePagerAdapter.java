@@ -10,6 +10,7 @@ import br.com.halyson.materialdesign.fragment.RecylerViewFragment;
 import br.com.halyson.materialdesign.fragment.DefaultFragment;
 import br.com.halyson.materialdesign.fragment.Fragment2;
 import br.com.halyson.materialdesign.fragment.Fragment3;
+import br.com.halyson.materialdesign.fragment.WelcomeFragment;
 
 /**
  * Created by halyson on 18/12/14.
@@ -42,7 +43,7 @@ public class HomePagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return RecylerViewFragment.newInstance();
+                return WelcomeFragment.newInstance();
             case 1:
                 return Fragment2.newInstance();
             case 2:

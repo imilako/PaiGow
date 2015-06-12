@@ -241,6 +241,8 @@ public class
         });
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.closeDrawers();
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED); ///NEW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
 
     private void selectItem(int position) {
