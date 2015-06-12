@@ -1,5 +1,8 @@
 package br.com.halyson.materialdesign.activity;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.BitmapDrawable;
@@ -18,6 +21,7 @@ import com.heinrichreimersoftware.materialdrawer.structure.DrawerItem;
 import com.heinrichreimersoftware.materialdrawer.structure.DrawerProfile;
 
 import br.com.halyson.materialdesign.R;
+import br.com.halyson.materialdesign.gamefragments.StoreFragment;
 
 public class GameActivity extends DrawerActivity {
 
@@ -68,7 +72,7 @@ public class GameActivity extends DrawerActivity {
         );
 
         drawer.addItem(new DrawerItem()
-                        .setImage(getResources().getDrawable(R.drawable.ic_mail))
+                        .setImage(getResources().getDrawable(R.drawable.store))
                                 //.setTextPrimary(getString(R.string.lorem_ipsum_short))
                         .setTextPrimary("Store")
                                 //.setTextSecondary(getString(R.string.lorem_ipsum_long))
@@ -79,7 +83,7 @@ public class GameActivity extends DrawerActivity {
 
 
         drawer.addItem(new DrawerItem()
-                        .setImage(getResources().getDrawable(R.drawable.ic_mail))
+                        .setImage(getResources().getDrawable(R.drawable.settings))
                                 //.setTextPrimary(getString(R.string.lorem_ipsum_short))
                         .setTextPrimary("Settings")
                                 //.setTextSecondary(getString(R.string.lorem_ipsum_long))
@@ -89,7 +93,7 @@ public class GameActivity extends DrawerActivity {
         drawer.addDivider();
 
         drawer.addItem(new DrawerItem()
-                        .setImage(getResources().getDrawable(R.drawable.ic_mail))
+                        .setImage(getResources().getDrawable(R.drawable.info))
                                 //.setTextPrimary(getString(R.string.lorem_ipsum_short))
                         .setTextPrimary("About")
                                 //.setTextSecondary(getString(R.string.lorem_ipsum_long))
@@ -105,9 +109,15 @@ public class GameActivity extends DrawerActivity {
             public void onClick(DrawerItem item, long id, int position) {
                 drawer.selectItem(position);
                 //Toast.makeText(GameActivity.this, "Clicked item #" + position, Toast.LENGTH_SHORT).show();
-                Intent myIntent = new Intent(GameActivity.this, StoreActivity.class);
+                //Intent myIntent = new Intent(GameActivity.this, StoreActivity.class);
                 //myIntent.putExtra("key", value); //Optional parameters
-                GameActivity.this.startActivity(myIntent);
+                //GameActivity.this.startActivity(myIntent);
+
+                Fragment fr = new StoreFragment();
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_place, fr);
+                fragmentTransaction.commit();
             }
         });
 

@@ -19,7 +19,7 @@
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:contentInsetStart="72dp" />
 
-        <ScrollView
+        <!-- <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -52,7 +52,14 @@
 
             </LinearLayout>
 
-        </ScrollView>
+        </ScrollView> -->
+
+        <fragment
+        android:name="br.com.halyson.materialdesign.gamefragments.GameFragment"
+        android:id="@+id/fragment_place"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
     </LinearLayout>
 
