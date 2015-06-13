@@ -27,6 +27,7 @@ public class SendToServer extends AsyncTask<String, Void, String> implements Kon
     String username = null;
     String password = null;
     String repeat = null;
+    String cookie = null;
 
     @Override
     protected String doInBackground(String... params) {
@@ -43,6 +44,16 @@ public class SendToServer extends AsyncTask<String, Void, String> implements Kon
                 username = params[1];
                 password = params[2];
                 repeat = params[3];
+                break;
+            case "logout":
+                username = params[1];
+                cookie = params[2];
+                url += LOGOUT_URL;
+                break;
+            case "getdata":
+                username = params[1];
+                cookie = params[2];
+                url += GET_DATA_URL;
                 break;
         }
         try {
@@ -73,6 +84,14 @@ public class SendToServer extends AsyncTask<String, Void, String> implements Kon
                 urlParameters.add(new BasicNameValuePair("username", username));
                 urlParameters.add(new BasicNameValuePair("password", password));
                 urlParameters.add(new BasicNameValuePair("repeat", repeat));
+                break;
+            case "logout":
+                urlParameters.add(new BasicNameValuePair("username", username));
+                urlParameters.add(new BasicNameValuePair("cookie", cookie));
+                break;
+            case "getdata":
+                urlParameters.add(new BasicNameValuePair("username", username));
+                urlParameters.add(new BasicNameValuePair("cookie", cookie));
                 break;
 
         }

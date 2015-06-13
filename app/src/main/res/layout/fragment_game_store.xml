@@ -9,6 +9,6 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="This is fragment No.2"
+        android:text="This is fragment Store"
         android:textStyle="bold" />
 </LinearLayout>

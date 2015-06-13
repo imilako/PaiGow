@@ -8,4 +8,6 @@ public interface Konstante {
     public final String SERVER_LOCATION = "http://loginserver-env.elasticbeanstalk.com/";
     public final String LOGIN_URL = "index.php";
     public final String SIGNUP_URL = "signup.php";
+    public final String LOGOUT_URL = "logout.php";
+    public final String GET_DATA_URL = "get_data.php";
 }

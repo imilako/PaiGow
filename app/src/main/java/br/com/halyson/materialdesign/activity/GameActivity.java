@@ -6,6 +6,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -20,7 +21,13 @@ import com.heinrichreimersoftware.materialdrawer.DrawerView;
 import com.heinrichreimersoftware.materialdrawer.structure.DrawerItem;
 import com.heinrichreimersoftware.materialdrawer.structure.DrawerProfile;
 
+import java.util.concurrent.ExecutionException;
+
 import br.com.halyson.materialdesign.R;
+import br.com.halyson.materialdesign.fragment.SendToServer;
+import br.com.halyson.materialdesign.gamefragments.AboutFragment;
+import br.com.halyson.materialdesign.gamefragments.GameFragment;
+import br.com.halyson.materialdesign.gamefragments.SettingsFragment;
 import br.com.halyson.materialdesign.gamefragments.StoreFragment;
 
 public class GameActivity extends DrawerActivity {
@@ -33,6 +40,50 @@ public class GameActivity extends DrawerActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store);
+
+        //INSTANCIRANJE
+
+
+        //Povrati cookie
+        final String COOKIE;
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                COOKIE = null;
+            } else {
+                COOKIE = extras.getString("cookie");
+            }
+        } else {
+            COOKIE = (String) savedInstanceState.getSerializable("cookie");
+        }
+        //Toast.makeText(getApplicationContext(), "cookie = " + COOKIE, Toast.LENGTH_SHORT ).show();
+
+        //Povrati username
+        final String USERNAME;
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                USERNAME = null;
+            } else {
+                USERNAME = extras.getString("username");
+            }
+        } else {
+            USERNAME = (String) savedInstanceState.getSerializable("username");
+        }
+
+        //GET DATA FROM SERVER
+        AsyncTask task = new SendToServer().execute("getdata", USERNAME, COOKIE);
+        String message = null;
+        try {
+            message = task.get().toString();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        String[] splitano = message.split(",");
+        //Toast.makeText(getApplicationContext(), "cookie = " + message, Toast.LENGTH_LONG ).show();
+        Toast.makeText(getApplicationContext(), "balance = " + splitano[splitano.length-1], Toast.LENGTH_SHORT ).show();
 
 
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -66,17 +117,26 @@ public class GameActivity extends DrawerActivity {
         drawerLayout.closeDrawer(drawer);
 
 
-        drawer.addItem(new DrawerItem()
+        /*drawer.addItem(new DrawerItem()
                         .setTextPrimary(getString(R.string.lorem_ipsum_short))
                         .setTextSecondary(getString(R.string.lorem_ipsum_long))
+        );*/
+        drawer.addItem(new DrawerItem()
+                        .setImage(getResources().getDrawable(R.drawable.game))
+                                //.setTextPrimary(getString(R.string.lorem_ipsum_short))
+                        .setTextPrimary("Game")
+                                //.setTextSecondary(getString(R.string.lorem_ipsum_long))
+                        //.setTextSecondary("Buy credit and more...")
         );
+
+        drawer.addDivider();
 
         drawer.addItem(new DrawerItem()
                         .setImage(getResources().getDrawable(R.drawable.store))
                                 //.setTextPrimary(getString(R.string.lorem_ipsum_short))
                         .setTextPrimary("Store")
                                 //.setTextSecondary(getString(R.string.lorem_ipsum_long))
-                        .setTextSecondary("Buy more credit and more...")
+                        .setTextSecondary("Buy credit and more...")
         );
 
         drawer.addDivider();
@@ -97,7 +157,7 @@ public class GameActivity extends DrawerActivity {
                                 //.setTextPrimary(getString(R.string.lorem_ipsum_short))
                         .setTextPrimary("About")
                                 //.setTextSecondary(getString(R.string.lorem_ipsum_long))
-                        .setTextSecondary("Additional info about us!")
+                        .setTextSecondary("Additional info andd rules!")
         );
 
         drawer.addDivider();
@@ -113,20 +173,71 @@ public class GameActivity extends DrawerActivity {
                 //myIntent.putExtra("key", value); //Optional parameters
                 //GameActivity.this.startActivity(myIntent);
 
+                /*Toast.makeText(getApplicationContext(), "position = " + position,
+                        Toast.LENGTH_SHORT ).show();*/
+
+                Fragment fr = null;
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+
+                if( position == 0 )  {
+                    fr = new GameFragment();
+                    fragmentTransaction.replace(R.id.fragment_place, fr);
+                    fragmentTransaction.commit();
+
+                } else if ( position == 2 ) {
+                    fr = new StoreFragment();
+                    fragmentTransaction.replace(R.id.fragment_place, fr);
+                    fragmentTransaction.commit();
+
+                } else if ( position == 4 ) {
+                    fr = new SettingsFragment();
+                    fragmentTransaction.replace(R.id.fragment_place, fr);
+                    fragmentTransaction.commit();
+
+                } else if ( position == 6 ) {
+                    fr = new AboutFragment();
+                    fragmentTransaction.replace(R.id.fragment_place, fr);
+                    fragmentTransaction.commit();
+
+                } else if ( position == 8 ) {
+                    AsyncTask task = new SendToServer().execute("logout",USERNAME,COOKIE);
+                    try {
+                        String message = task.get().toString();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+                    Intent myIntent = new Intent(GameActivity.this, HomeActivity.class);
+                    GameActivity.this.startActivity(myIntent);
+                    finish();
+                }
+
+
+                /*OSNOVNO PREBACIVANJE FRAGMENATA:
                 Fragment fr = new StoreFragment();
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_place, fr);
-                fragmentTransaction.commit();
+                fragmentTransaction.commit();*/
             }
         });
 
 
-        drawer.addFixedItem(new DrawerItem()
+        drawer.addItem(new DrawerItem()
+                        .setImage(getResources().getDrawable(R.drawable.logout))
+                                //.setTextPrimary(getString(R.string.lorem_ipsum_short))
+                        .setTextPrimary("Logout")
+                //.setTextSecondary(getString(R.string.lorem_ipsum_long))
+                //.setTextSecondary("Buy credit and more...")
+        );
+
+        /*drawer.addFixedItem(new DrawerItem()
                         .setRoundedImage((BitmapDrawable) getResources().getDrawable(R.drawable.cat_2), DrawerItem.SMALL_AVATAR)
                                 //.setTextPrimary(getString(R.string.lorem_ipsum_short))
                         .setTextPrimary("Logout")
-        );
+        );*/
 
         /*drawer.addFixedItem(new DrawerItem()
                         .setImage(getResources().getDrawable(R.drawable.ic_flag))
@@ -145,9 +256,9 @@ public class GameActivity extends DrawerActivity {
         drawer.addProfile(new DrawerProfile()
                         .setId(1)
                                 //.setRoundedAvatar((BitmapDrawable) getResources().getDrawable(R.drawable.cat_1))
-                        .setBackground(getResources().getDrawable(R.drawable.cat_wide_1))
-                        .setBackground(getResources().getDrawable(R.drawable.cat_wide_1))
-                        .setName("PaiGow")
+                        .setBackground(getResources().getDrawable(R.drawable.drawer_background))
+                        .setBackground(getResources().getDrawable(R.drawable.drawer_background))
+                        //.setName("PaiGow")
                 //.setName(getString(R.string.lorem_ipsum_short))
                 //.setDescription(getString(R.string.lorem_ipsum_medium))
         );

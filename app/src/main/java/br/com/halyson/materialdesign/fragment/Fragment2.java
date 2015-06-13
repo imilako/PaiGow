@@ -67,13 +67,12 @@ public class Fragment2 extends Fragment {
 
         AsyncTask task = new SendToServer().execute("login", u.getText().toString(), p.getText().toString());
         String message = task.get().toString();
-        Toast.makeText(Fragment2.this.getActivity().getBaseContext(),
-                        message, Toast.LENGTH_LONG).show();
+        Toast.makeText(Fragment2.this.getActivity().getBaseContext(), message, Toast.LENGTH_LONG).show();
         myButton.setEnabled(true);
         if (message.length() > 10) {
-            /*Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-            startActivity(intent);*/
             Intent intent = new Intent(getActivity(), GameActivity.class);
+            intent.putExtra("cookie", message);
+            intent.putExtra("username", u.getText().toString());
             startActivity(intent);
             getActivity().finish();
         }
