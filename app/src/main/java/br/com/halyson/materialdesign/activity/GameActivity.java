@@ -83,12 +83,18 @@ public class GameActivity extends DrawerActivity {
         }
         String[] splitano = message.split(",");
         //Toast.makeText(getApplicationContext(), "cookie = " + message, Toast.LENGTH_LONG ).show();
-        Toast.makeText(getApplicationContext(), "balance = " + splitano[splitano.length-1], Toast.LENGTH_SHORT ).show();
+        //Toast.makeText(getApplicationContext(), "balance = " + splitano[splitano.length-1], Toast.LENGTH_SHORT ).show();
+        final int APP_LANGUAGE = Integer.parseInt(splitano[1]);
+        final int TILESET = Integer.parseInt(splitano[2]);
+        final int VOLUME = Integer.parseInt(splitano[3]);
+        final int MUTE = Integer.parseInt(splitano[4]);
+        final int BALANCE = Integer.parseInt(splitano[5]);
 
 
-        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        final DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         drawer = (DrawerView) findViewById(R.id.drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("PaiGow");
 
         //drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
@@ -167,6 +173,7 @@ public class GameActivity extends DrawerActivity {
         drawer.setOnItemClickListener(new DrawerItem.OnItemClickListener() {
             @Override
             public void onClick(DrawerItem item, long id, int position) {
+                int current = drawer.getSelectedPosition();
                 drawer.selectItem(position);
                 //Toast.makeText(GameActivity.this, "Clicked item #" + position, Toast.LENGTH_SHORT).show();
                 //Intent myIntent = new Intent(GameActivity.this, StoreActivity.class);
@@ -176,44 +183,46 @@ public class GameActivity extends DrawerActivity {
                 /*Toast.makeText(getApplicationContext(), "position = " + position,
                         Toast.LENGTH_SHORT ).show();*/
 
-                Fragment fr = null;
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                if (current != position) {
+                    Fragment fr = null;
+                    FragmentManager fm = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fm.beginTransaction();
 
-                if( position == 0 )  {
-                    fr = new GameFragment();
-                    fragmentTransaction.replace(R.id.fragment_place, fr);
-                    fragmentTransaction.commit();
+                    if (position == 0) {
+                        fr = new GameFragment();
+                        fragmentTransaction.replace(R.id.fragment_place, fr);
+                        fragmentTransaction.commit();
 
-                } else if ( position == 2 ) {
-                    fr = new StoreFragment();
-                    fragmentTransaction.replace(R.id.fragment_place, fr);
-                    fragmentTransaction.commit();
+                    } else if (position == 2) {
+                        fr = new StoreFragment();
+                        fragmentTransaction.replace(R.id.fragment_place, fr);
+                        fragmentTransaction.commit();
 
-                } else if ( position == 4 ) {
-                    fr = new SettingsFragment();
-                    fragmentTransaction.replace(R.id.fragment_place, fr);
-                    fragmentTransaction.commit();
+                    } else if (position == 4) {
+                        fr = new SettingsFragment();
+                        fragmentTransaction.replace(R.id.fragment_place, fr);
+                        fragmentTransaction.commit();
 
-                } else if ( position == 6 ) {
-                    fr = new AboutFragment();
-                    fragmentTransaction.replace(R.id.fragment_place, fr);
-                    fragmentTransaction.commit();
+                    } else if (position == 6) {
+                        fr = new AboutFragment();
+                        fragmentTransaction.replace(R.id.fragment_place, fr);
+                        fragmentTransaction.commit();
 
-                } else if ( position == 8 ) {
-                    AsyncTask task = new SendToServer().execute("logout",USERNAME,COOKIE);
-                    try {
-                        String message = task.get().toString();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
+                    } else if (position == 8) {
+                        AsyncTask task = new SendToServer().execute("logout", USERNAME, COOKIE);
+                        try {
+                            String message = task.get().toString();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        }
+                        Intent myIntent = new Intent(GameActivity.this, HomeActivity.class);
+                        GameActivity.this.startActivity(myIntent);
+                        finish();
                     }
-                    Intent myIntent = new Intent(GameActivity.this, HomeActivity.class);
-                    GameActivity.this.startActivity(myIntent);
-                    finish();
                 }
-
+                drawerLayout.closeDrawer(drawer);
 
                 /*OSNOVNO PREBACIVANJE FRAGMENATA:
                 Fragment fr = new StoreFragment();
