@@ -10,4 +10,6 @@ public interface Konstante {
     public final String SIGNUP_URL = "signup.php";
     public final String LOGOUT_URL = "logout.php";
     public final String GET_DATA_URL = "get_data.php";
+    public final String UPDATE_BALANCE_URL = "update_balance.php";
+    public final String UPDATE_SETTINGS_URL = "update_settings.php";
 }

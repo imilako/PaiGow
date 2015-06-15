@@ -67,7 +67,10 @@ public class Fragment2 extends Fragment {
 
         AsyncTask task = new SendToServer().execute("login", u.getText().toString(), p.getText().toString());
         String message = task.get().toString();
-        Toast.makeText(Fragment2.this.getActivity().getBaseContext(), message, Toast.LENGTH_LONG).show();
+
+        if (message.length() < 5) {
+            Toast.makeText(Fragment2.this.getActivity().getBaseContext(), "Wrong username/password!", Toast.LENGTH_LONG).show();
+        }
         myButton.setEnabled(true);
         if (message.length() > 10) {
             Intent intent = new Intent(getActivity(), GameActivity.class);

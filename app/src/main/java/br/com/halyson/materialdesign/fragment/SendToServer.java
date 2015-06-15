@@ -28,6 +28,11 @@ public class SendToServer extends AsyncTask<String, Void, String> implements Kon
     String password = null;
     String repeat = null;
     String cookie = null;
+    String add = null;
+    String jezik = null;
+    String boja = null;
+    String volume = null;
+    String mute = null;
 
     @Override
     protected String doInBackground(String... params) {
@@ -54,6 +59,21 @@ public class SendToServer extends AsyncTask<String, Void, String> implements Kon
                 username = params[1];
                 cookie = params[2];
                 url += GET_DATA_URL;
+                break;
+            case "updatebalance":
+                username = params[1];
+                cookie = params[2];
+                add = params[3];
+                url += UPDATE_BALANCE_URL;
+                break;
+            case "updatesettings":
+                username = params[1];
+                cookie = params[2];
+                jezik = params[3];
+                boja = params[4];
+                volume = params[5];
+                mute = params[6];
+                url += UPDATE_SETTINGS_URL;
                 break;
         }
         try {
@@ -92,6 +112,19 @@ public class SendToServer extends AsyncTask<String, Void, String> implements Kon
             case "getdata":
                 urlParameters.add(new BasicNameValuePair("username", username));
                 urlParameters.add(new BasicNameValuePair("cookie", cookie));
+                break;
+            case "updatebalance":
+                urlParameters.add(new BasicNameValuePair("username", username));
+                urlParameters.add(new BasicNameValuePair("cookie", cookie));
+                urlParameters.add(new BasicNameValuePair("add", add));
+                break;
+            case "updatesettings":
+                urlParameters.add(new BasicNameValuePair("username", username));
+                urlParameters.add(new BasicNameValuePair("cookie", cookie));
+                urlParameters.add(new BasicNameValuePair("jezik", jezik));
+                urlParameters.add(new BasicNameValuePair("boja", boja));
+                urlParameters.add(new BasicNameValuePair("volume", volume));
+                urlParameters.add(new BasicNameValuePair("mute", mute));
                 break;
 
         }

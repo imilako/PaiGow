@@ -20,4 +20,6 @@
     <string name="drawer_frame_layout">DrawerFrameLayout</string>
     <string name="drawer_activity">DrawerActivity</string>
 
+    <string name="array_prompt">Choose a tile set</string>
+
 </resources>

@@ -3,12 +3,112 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#ffff00">
+    android:background="@color/theme_window_background">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="This is fragment Store"
-        android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <!--tileset-->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Domino skins:"
+            android:paddingTop="30dp"
+            />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="#fff"
+            />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/buyclassic"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:src="@drawable/classic"
+                android:paddingRight="5dp"/>
+
+            <ImageView
+                android:id="@+id/buybw"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:src="@drawable/bw"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"/>
+
+        </LinearLayout>
+
+        <!--credit-->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Credit:"
+            android:paddingTop="30dp"
+            />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="#fff"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="65dp"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:id="@+id/buy1"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:src="@drawable/buy1"
+                android:paddingRight="5dp"/>
+
+            <ImageView
+                android:id="@+id/buy5"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:src="@drawable/buy5"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"/>
+
+            <ImageView
+                android:id="@+id/buy25"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:src="@drawable/buy25"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"/>
+
+            <ImageView
+                android:id="@+id/buy100"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:src="@drawable/buy100"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
