@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.Switch;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
@@ -22,9 +24,21 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         //Inflate the layout for this fragment
+        int[] settings = ((GameActivity) getActivity()).getSettings();
+
         View toreturn = inflater.inflate(R.layout.fragment_game_settings, container, false);
         final Spinner spinner1 = (Spinner) toreturn.findViewById(R.id.spinner1);
         spinner1.setSelection(((GameActivity) getActivity()).getAPP_LANGUAGE());
+
+        final SeekBar sb = (SeekBar) toreturn.findViewById(R.id.seekbar);
+        sb.setProgress(settings[2]);
+
+        final Switch sw = (Switch) toreturn.findViewById(R.id.mySwitch);
+        if (settings[3] == 0) {
+            sw.setChecked(false);
+        } else {
+            sw.setChecked(true);
+        }
 
         Button b = (Button) toreturn.findViewById(R.id.submitS);
         ((Button) b).setOnClickListener(new View.OnClickListener() {
@@ -35,8 +49,12 @@ public class SettingsFragment extends Fragment {
                 /*Toast.makeText(Fragment2.this.getActivity().getBaseContext(),
                         "clicked on Submit Button", Toast.LENGTH_LONG).show();*/
 
+                int[] newValues = new int[4];
+
             }
         });
+
+
         return toreturn;
     }
 }

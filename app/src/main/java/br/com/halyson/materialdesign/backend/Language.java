@@ -45,7 +45,7 @@ public class Language {
         strings[1][4] = "Uredite Vasu aplikaciju";
         strings[1][5] = "Info";
         strings[1][6] = "Informacije i upute!";
-        strings[1][6] = "Odjava";
+        strings[1][7] = "Odjava";
     }
 
     public void setLanguage (int language) {

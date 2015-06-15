@@ -50,6 +50,22 @@ public class GameActivity extends DrawerActivity {
     public int[] player_hand = new int[4];
     public int[] dealer_hand = new int[4];
 
+    public int[] getSettings () {
+        int[] send = new int[4];
+        send[0] = APP_LANGUAGE;
+        send[1] = TILESET;
+        send[2] = VOLUME;
+        send[3] = MUTE;
+        return send;
+    }
+
+    public void updateSettings (int langu, int tiles, int vol, int mut) {
+        this.VOLUME = vol;
+        this.MUTE = mut;
+        this.TILESET = tiles;
+        this.APP_LANGUAGE = langu;
+    }
+
     private void setSTS(String cookie, String username, int language, int tileset, int volume, int mute, float balance) {
         STS_COOKIE = cookie;
         STS_USERNAME = username;
