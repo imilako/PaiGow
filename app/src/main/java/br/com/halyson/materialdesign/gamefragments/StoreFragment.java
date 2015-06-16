@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import br.com.halyson.materialdesign.R;
@@ -77,6 +78,14 @@ public class StoreFragment extends Fragment {
 
             }
         });
+
+        //language
+        TextView ds = (TextView) layout.findViewById(R.id.dominoskins);
+        ds.setText(((GameActivity) getActivity()).getLangString(12));
+
+        TextView cl = (TextView) layout.findViewById(R.id.creditlabel);
+        cl.setText(((GameActivity) getActivity()).getLangString(13));
+
 
         return layout;
     }

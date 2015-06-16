@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
@@ -86,6 +87,18 @@ public class SettingsFragment extends Fragment {
         tileset = settings[1];
         Ntileset = settings[1];
 
+        //language
+        sw.setText(((GameActivity) getActivity()).getLangString(15));
+
+        TextView vl = (TextView) toreturn.findViewById(R.id.volumelabel);
+        vl.setText(((GameActivity) getActivity()).getLangString(14));
+
+        TextView ll = (TextView) toreturn.findViewById(R.id.languagelabel);
+        ll.setText(((GameActivity) getActivity()).getLangString(16));
+
+        TextView ds = (TextView) toreturn.findViewById(R.id.dslabel);
+        ds.setText(((GameActivity) getActivity()).getLangString(12));
+
         Button b = (Button) toreturn.findViewById(R.id.submitS);
         ((Button) b).setOnClickListener(new View.OnClickListener() {
 
@@ -118,9 +131,9 @@ public class SettingsFragment extends Fragment {
 
     public void setTileset (int t) {
         if (tileset == t) {
-            Toast.makeText(this.getActivity().getBaseContext(), "This tile set is already active!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.getActivity().getBaseContext(), ((GameActivity) getActivity()).getLangString(25), Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this.getActivity().getBaseContext(), "Press submit to activate this tileset!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.getActivity().getBaseContext(), ((GameActivity) getActivity()).getLangString(26), Toast.LENGTH_SHORT).show();
         }
         Ntileset = t;
     }

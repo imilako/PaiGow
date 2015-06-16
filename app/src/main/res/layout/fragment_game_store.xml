@@ -14,6 +14,7 @@
 
         <!--tileset-->
         <TextView
+            android:id="@+id/dominoskins"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Domino skins:"
@@ -54,6 +55,7 @@
 
         <!--credit-->
         <TextView
+            android:id="@+id/creditlabel"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Credit:"

@@ -189,6 +189,10 @@ public class GameActivity extends DrawerActivity {
         updateBalanceOnServer(toAdd);
     }
 
+    public String getLangString (int ID) {
+        return langob.getLangString(ID);
+    }
+
 
     //INSTANCIRANJE
     //Calculate calc = new Calculate();
