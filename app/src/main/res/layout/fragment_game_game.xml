@@ -21,7 +21,7 @@
             android:layout_weight="1"
             android:text="This is fragment Game"
             android:textColor="#000" />-->
-
+        <!-- dealer -->
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="110dp"
@@ -77,8 +77,51 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="20dp"
+
+            android:gravity="center">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"/>
+
+            <TextView
+                android:id="@+id/pair1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:text="WIN"
+                android:textColor="#000"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"/>
+
+            <TextView
+                android:id="@+id/pair2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:text="LOSS"
+                android:textColor="#000"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"/>
+
+        </LinearLayout>
+
+        <!--user-hand-->
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="110dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="10dp"
             android:gravity="center">
 
             <LinearLayout

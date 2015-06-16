@@ -60,10 +60,27 @@ public class GameActivity extends DrawerActivity {
     }
 
     public void updateSettings (int langu, int tiles, int vol, int mut) {
+        boolean rebuildCheck = false;
+        if (APP_LANGUAGE != langu) {
+            rebuildCheck = true;
+        }
         this.VOLUME = vol;
         this.MUTE = mut;
         this.TILESET = tiles;
         this.APP_LANGUAGE = langu;
+
+        updateSettingsOnServer(langu, tiles, vol, mut);
+
+        if (rebuildCheck) {
+            finish();
+            startActivity(starterIntent);
+        }
+        /*int[] to = new int[4];
+        to[0] = langu;
+        to[1] = tiles;
+        to[2] = vol;
+        to[3] = mut;
+        Toast.makeText(getApplicationContext(), to[0] + "" + to[1] + "" + to[2] + "" + to[3] + "", Toast.LENGTH_SHORT ).show();*/
     }
 
     private void setSTS(String cookie, String username, int language, int tileset, int volume, int mute, float balance) {
@@ -86,7 +103,7 @@ public class GameActivity extends DrawerActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT ).show();
+        //t.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT ).show();
     }
 
     public void updateSettingsOnServer (int language, int tileset, int volume, int mute) {
@@ -133,7 +150,7 @@ public class GameActivity extends DrawerActivity {
     public int[] requestDrawDealerHand () {
         HouseWay2 houseway = new HouseWay2();
         dealer_hand = houseway.arrangeTiles(draw.getDomino(), draw.getDomino(), draw.getDomino(), draw.getDomino());
-        Toast.makeText(getApplicationContext(), "" + dealer_hand[0] + " " + dealer_hand[1] + " " + dealer_hand[2] + " " + dealer_hand[3] + " ", Toast.LENGTH_SHORT ).show();
+        //Toast.makeText(getApplicationContext(), "" + dealer_hand[0] + " " + dealer_hand[1] + " " + dealer_hand[2] + " " + dealer_hand[3] + " ", Toast.LENGTH_SHORT ).show();
         return dealer_hand;
     }
 
@@ -169,13 +186,16 @@ public class GameActivity extends DrawerActivity {
     //INSTANCIRANJE
     //Calculate calc = new Calculate();
     //Domino domino = new Domino(TILESET);
-    Language langob = new Language(APP_LANGUAGE);
+    Language langob;
     Draw draw = new Draw();
     //HouseWay houseway = new HouseWay();
+
+    Intent starterIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        starterIntent = getIntent();
 
         /*player_hand[0] = 1;
         player_hand[1] = 2;
@@ -233,7 +253,7 @@ public class GameActivity extends DrawerActivity {
 
         //postavi globalne varijable
         setSTS(COOKIE,USERNAME,Integer.parseInt(splitano[1]),Integer.parseInt(splitano[2]),Integer.parseInt(splitano[3]),Integer.parseInt(splitano[4]),Float.parseFloat(splitano[5]));
-
+        langob = new Language(APP_LANGUAGE);
 
         setContentView(R.layout.activity_store);
 
@@ -280,6 +300,7 @@ public class GameActivity extends DrawerActivity {
         String drawer_settings_1 = langob.getLangString(4);
         String drawer_about = langob.getLangString(5);
         String drawer_about_1 = langob.getLangString(6);
+        String drawer_logout = langob.getLangString(7);
         addItem(new DrawerItem()
                         .setImage(getResources().getDrawable(R.drawable.game))
                                 //.setTextPrimary(getString(R.string.lorem_ipsum_short))
@@ -390,7 +411,7 @@ public class GameActivity extends DrawerActivity {
         addItem(new DrawerItem()
                         .setImage(getResources().getDrawable(R.drawable.logout))
                                 //.setTextPrimary(getString(R.string.lorem_ipsum_short))
-                        .setTextPrimary("Logout")
+                        .setTextPrimary(drawer_logout)
                 //.setTextSecondary(getString(R.string.lorem_ipsum_long))
                 //.setTextSecondary("Buy credit and more...")
         );

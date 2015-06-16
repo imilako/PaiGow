@@ -108,6 +108,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/setclassic"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
@@ -115,6 +116,7 @@
                 android:paddingRight="5dp"/>
 
             <ImageView
+                android:id="@+id/setbw"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"

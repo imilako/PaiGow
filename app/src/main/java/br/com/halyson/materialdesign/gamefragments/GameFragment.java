@@ -55,6 +55,11 @@ public class GameFragment extends Fragment {
 
         TextView balanceV = (TextView) toreturn.findViewById(R.id.balance);
         TextView betV = (TextView) toreturn.findViewById(R.id.bet);
+        final TextView pair1 = (TextView) toreturn.findViewById(R.id.pair1);
+        final TextView pair2 = (TextView) toreturn.findViewById(R.id.pair2);
+
+        pair1.setVisibility(View.GONE);
+        pair2.setVisibility(View.GONE);
 
         float balanceL = ((GameActivity) getActivity()).getBALANCE();
         float betL = 0;
@@ -133,7 +138,7 @@ public class GameFragment extends Fragment {
                     startB.setVisibility(View.GONE);
                     assembleB.setVisibility(View.VISIBLE);
 
-                    Toast.makeText(getActivity().getApplicationContext(), "print:" + player_hand[0] + player_hand[1] + player_hand[2] + player_hand[3], Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity().getApplicationContext(), "print:" + player_hand[0] + player_hand[1] + player_hand[2] + player_hand[3], Toast.LENGTH_SHORT).show();
 
                     dom1.setVisibility(View.VISIBLE);
                     dom2.setVisibility(View.VISIBLE);
@@ -158,7 +163,7 @@ public class GameFragment extends Fragment {
                 assembleB.setVisibility(View.GONE);
                 restartB.setVisibility(View.VISIBLE);
 
-                Toast.makeText( getActivity().getApplicationContext(), "print " + dealer_hand[0] + dealer_hand[1] + dealer_hand[2] + dealer_hand[3], Toast.LENGTH_SHORT ).show();
+                //t.makeText( getActivity().getApplicationContext(), "print " + dealer_hand[0] + dealer_hand[1] + dealer_hand[2] + dealer_hand[3], Toast.LENGTH_SHORT ).show();
 
                 dom5.setVisibility(View.VISIBLE);
                 dom6.setVisibility(View.VISIBLE);
@@ -171,7 +176,20 @@ public class GameFragment extends Fragment {
 
 
                 int[] win = ((GameActivity) getActivity()).getWinner();
-                Toast.makeText(((GameActivity) getActivity()).getApplicationContext(), "hand 1: " + win[0] + " hand 2: " + win[1] + " game: " + win[2], Toast.LENGTH_SHORT ).show();
+                //Toast.makeText(((GameActivity) getActivity()).getApplicationContext(), "hand 1: " + win[0] + " hand 2: " + win[1] + " game: " + win[2], Toast.LENGTH_SHORT ).show();
+                pair1.setVisibility(View.VISIBLE);
+                pair2.setVisibility(View.VISIBLE);
+
+                if (win[0] == 1) {
+                    pair1.setText("LOSS");
+                } else {
+                    pair1.setText("WIN");
+                }
+                if (win[1] == 1) {
+                    pair2.setText("LOSS");
+                } else {
+                    pair2.setText("WIN");
+                }
 
                 if (win[2] == 0) {
                     float dodaj = (float) (bet*0.95);
@@ -217,6 +235,9 @@ public class GameFragment extends Fragment {
                 dom6.setVisibility(View.GONE);
                 dom7.setVisibility(View.GONE);
                 dom8.setVisibility(View.GONE);
+
+                pair1.setVisibility(View.GONE);
+                pair2.setVisibility(View.GONE);
 
                 ((GameActivity) getActivity()).restart();
 

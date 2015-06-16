@@ -74,8 +74,29 @@ public class Fragment3 extends Fragment {
 
         AsyncTask task = new SendToServer().execute("signup", u.getText().toString(), p.getText().toString(), r.getText().toString());
         String message = task.get().toString();
-        Toast.makeText(Fragment3.this.getActivity().getBaseContext(),
-                message, Toast.LENGTH_LONG).show();
+
+        if (!message.equals("not set")) {
+            int poruka = Integer.parseInt(message);
+            poruka = poruka % 10;
+            if (poruka == 1) {
+                Toast.makeText(Fragment3.this.getActivity().getBaseContext(), "Passwords do not match!", Toast.LENGTH_SHORT).show();
+            } else if (poruka == 2) {
+                Toast.makeText(Fragment3.this.getActivity().getBaseContext(), "Username must contain at least 6 characters!", Toast.LENGTH_SHORT).show();
+            } else if (poruka == 3) {
+                Toast.makeText(Fragment3.this.getActivity().getBaseContext(), "Password must contain at least 6 characters!", Toast.LENGTH_SHORT).show();
+            } else if (poruka == 4) {
+                Toast.makeText(Fragment3.this.getActivity().getBaseContext(), "Username must contain only numbers and letters!", Toast.LENGTH_SHORT).show();
+            } else if (poruka == 5) {
+                Toast.makeText(Fragment3.this.getActivity().getBaseContext(), "Password must contain only numbers and letters!", Toast.LENGTH_SHORT).show();
+            } else if (poruka == 6) {
+                Toast.makeText(Fragment3.this.getActivity().getBaseContext(), "Username is already in use!", Toast.LENGTH_SHORT).show();
+            } else if (poruka == 0) {
+                Toast.makeText(Fragment3.this.getActivity().getBaseContext(), "Registration successful!", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(Fragment3.this.getActivity().getBaseContext(), "All fields are required!", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 }
