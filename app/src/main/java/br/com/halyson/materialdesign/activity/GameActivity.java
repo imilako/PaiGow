@@ -208,6 +208,7 @@ public class GameActivity extends DrawerActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         starterIntent = getIntent();
+        setTitle("PaiGow");
 
         /*player_hand[0] = 1;
         player_hand[1] = 2;

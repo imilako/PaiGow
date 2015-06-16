@@ -41,22 +41,18 @@ Following are the primary rules when it comes to pai gow. In case the player win
 
 Each player and dealer will be given four tiles.
 The player will separate his tiles into low and high hands. The player does not need to specify which is higher, as this will be obvious.
-\n\nEach pair of tiles will have a ranking order as follows:\n\nPair: There are 16 pairs (slika od parova???), 11 identical and 5 mixed pairs.\nWong: This is a 2 or 12 tile with any 9 tile.\n
-
-Gong: This is a 2 or 12 tile with any 8 tile.\n
-
-9 to 0 points (the more the better): For all other 2-tile hands, the total number of dots will be taken, and the terminal digit is used to determine the number of points (as in baccarat). For example, a 10 and 9 tile is worth 9 points; a 4 and 7 tile is worth 1 point.
+\n\nEach pair of tiles will have a ranking order as follows:\n\nPair: There are 16 pairs, 11 identical and 5 mixed pairs.\n\nWong: This is a 2 or 12 tile with any 9 tile.\n\nGong: This is a 2 or 12 tile with any 8 tile.\n\n9 to 0 points (the more the better): For all other 2-tile hands, the total number of dots will be taken, and the terminal digit is used to determine the number of points (as in baccarat).\n\nFor example, a 10 and 9 tile is worth 9 points; a 4 and 7 tile is worth 1 point.
 
 An exception to the above rule is that the two tiles in the highest ranking Gee Joon pair are semi-wild and are worth either 3 or 6 points, whichever results in a higher total. For example, when combined with a 4-point tile, a Gee Joon tile counts as 3 points to make a 7-point hand, instead of counting as 6 points to make a 0-point hand.
-The player's high hand will be compared to the dealer's high hand, and the player's low hand compared to the dealer's low hand (as in pai gow poker).
+\n\nThe player's high hand will be compared to the dealer's high hand, and the player's low hand compared to the dealer's low hand (as in pai gow poker).
 If both player and dealer have a Wong, Gong, or 1 to 9 points, the tie will be broken according to which hand has the higher-ranked high tile.
 If the high tile does not break the tie then the win will go to the banker.
 A 0-0 tie always goes to the banker.
 When using high tiles to break a tie, the rank order is the same as the pair order, except the two tiles in the highest gee joon pair are ranked lowest individually and will therefore never be a hand's high tile.
-If the player wins both hands he will win even money, less a 5% commission. If the player wins one and loses one then his wager will push. If the dealer wins both then the player will lose his wager.
+\n\nIf the player wins both hands he will win even money, less a 5% commission. If the player wins one and loses one then his wager will push. If the dealer wins both then the player will lose his wager.
 
-Dino Ivan Natali
-We are a young team of students. We like to play  games. We like to code. We like Android.
+\n\nDino Ivan Natali
+\nWe are a young team of students. We like to play  games. We like to code. We like Android.
 Enrolled in the 1st year of Computer Master's study in Tehnicki fakultet Rijeka."
 
                 android:layout_marginBottom="10dp"/>

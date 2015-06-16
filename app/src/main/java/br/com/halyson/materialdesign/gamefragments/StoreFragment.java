@@ -67,14 +67,16 @@ public class StoreFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Toast.makeText( getActivity().getApplicationContext(), "You already own this tile set!", Toast.LENGTH_SHORT ).show();
+                String messageY = ((GameActivity) getActivity()).getLangString(18);
+                Toast.makeText( getActivity().getApplicationContext(), messageY, Toast.LENGTH_SHORT ).show();
             }
         });
         ((ImageView) buybw).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Toast.makeText( getActivity().getApplicationContext(), "You already own this tile set!", Toast.LENGTH_SHORT ).show();
+                String messageY = ((GameActivity) getActivity()).getLangString(18);
+                Toast.makeText( getActivity().getApplicationContext(), messageY, Toast.LENGTH_SHORT ).show();
 
             }
         });
@@ -86,14 +88,15 @@ public class StoreFragment extends Fragment {
         TextView cl = (TextView) layout.findViewById(R.id.creditlabel);
         cl.setText(((GameActivity) getActivity()).getLangString(13));
 
-
         return layout;
     }
 
     public void buyCredit (final float toAdd) {
+        String messageC = ((GameActivity) getActivity()).getLangString(19);
+        String messageA = ((GameActivity) getActivity()).getLangString(20);
         new AlertDialog.Builder(getActivity())
-                .setTitle("Confirm purchase")
-                .setMessage("Are you sure you want to buy $" + toAdd + "?")
+                .setTitle(messageC)
+                .setMessage(messageA + toAdd + "?")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         ((GameActivity) getActivity()).updateBalance(toAdd);

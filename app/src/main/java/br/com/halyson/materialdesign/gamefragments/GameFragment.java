@@ -45,8 +45,11 @@ public class GameFragment extends Fragment {
         final ImageView dom7 = (ImageView) toreturn.findViewById(R.id.dom7);
         final ImageView dom8 = (ImageView) toreturn.findViewById(R.id.dom8);
         final Button startB = (Button) toreturn.findViewById(R.id.play);
+        startB.setText(((GameActivity) getActivity()).getLangString(21));
         final Button assembleB = (Button) toreturn.findViewById(R.id.assemble);
+        assembleB.setText(((GameActivity) getActivity()).getLangString(22));
         final Button restartB = (Button) toreturn.findViewById(R.id.restart);
+        restartB.setText(((GameActivity) getActivity()).getLangString(23));
 
         final ImageView c1 = (ImageView) toreturn.findViewById(R.id.c1);
         final ImageView c2 = (ImageView) toreturn.findViewById(R.id.c2);
@@ -68,8 +71,8 @@ public class GameFragment extends Fragment {
 
         DecimalFormat df =  new DecimalFormat();
         df.setMaximumFractionDigits(2);
-        balanceV.setText("Balance: $" + df.format(balance));
-        betV.setText("Bet: $" + bet);
+        balanceV.setText(((GameActivity) getActivity()).getLangString(8) + df.format(balance));
+        betV.setText(((GameActivity) getActivity()).getLangString(9) + bet);
 
 
         SetView(toreturn);
@@ -181,14 +184,14 @@ public class GameFragment extends Fragment {
                 pair2.setVisibility(View.VISIBLE);
 
                 if (win[0] == 1) {
-                    pair1.setText("LOSS");
+                    pair1.setText(((GameActivity) getActivity()).getLangString(11));
                 } else {
-                    pair1.setText("WIN");
+                    pair1.setText(((GameActivity) getActivity()).getLangString(10));
                 }
                 if (win[1] == 1) {
-                    pair2.setText("LOSS");
+                    pair2.setText(((GameActivity) getActivity()).getLangString(11));
                 } else {
-                    pair2.setText("WIN");
+                    pair2.setText(((GameActivity) getActivity()).getLangString(10));
                 }
 
                 if (win[2] == 0) {
@@ -303,8 +306,8 @@ public class GameFragment extends Fragment {
 
             DecimalFormat df =  new DecimalFormat();
             df.setMaximumFractionDigits(2);
-            balanceV.setText("Balance: $" + df.format(balance));
-            betV.setText("Bet: $" + bet);
+            balanceV.setText(((GameActivity) getActivity()).getLangString(8) + df.format(balance));
+            betV.setText(((GameActivity) getActivity()).getLangString(9) + bet);
 
         }
     }
@@ -332,8 +335,8 @@ public class GameFragment extends Fragment {
 
             DecimalFormat df =  new DecimalFormat();
             df.setMaximumFractionDigits(2);
-            balanceV.setText("Balance: $" + df.format(balance));
-            betV.setText("Bet: $" + bet);
+            balanceV.setText(((GameActivity) getActivity()).getLangString(8) + df.format(balance));
+            betV.setText(((GameActivity) getActivity()).getLangString(9) + bet);
         }
     }
 }

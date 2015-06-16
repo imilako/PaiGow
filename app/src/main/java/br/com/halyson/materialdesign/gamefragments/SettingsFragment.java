@@ -100,11 +100,12 @@ public class SettingsFragment extends Fragment {
         ds.setText(((GameActivity) getActivity()).getLangString(12));
 
         Button b = (Button) toreturn.findViewById(R.id.submitS);
+        b.setText(((GameActivity) getActivity()).getLangString(24));
         ((Button) b).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-               setNewValues();
+                setNewValues();
             }
         });
 
