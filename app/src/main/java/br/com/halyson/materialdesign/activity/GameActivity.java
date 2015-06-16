@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -68,6 +69,12 @@ public class GameActivity extends DrawerActivity {
         this.MUTE = mut;
         this.TILESET = tiles;
         this.APP_LANGUAGE = langu;
+
+        mediaPlayer.setVolume(((float) VOLUME)/100, ((float) VOLUME)/100);
+        mediaPlayer.start();
+        if (MUTE == 1) {
+            mediaPlayer.pause();
+        }
 
         updateSettingsOnServer(langu, tiles, vol, mut);
 
@@ -191,6 +198,7 @@ public class GameActivity extends DrawerActivity {
     //HouseWay houseway = new HouseWay();
 
     Intent starterIntent;
+    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -473,6 +481,15 @@ public class GameActivity extends DrawerActivity {
                 Toast.makeText(GameActivity.this, "Switched from profile *" + oldId + " to profile *" + newId, Toast.LENGTH_SHORT).show();
             }
         });*/
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.backgroundmusic1);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
+        mediaPlayer.setVolume(((float) VOLUME)/100,((float) VOLUME)/100);
+        if (MUTE == 1) {
+            mediaPlayer.pause();
+        }
+        //mediaPlayer.pause();
     }
 
     public void openDrawerFrameLayout(View view) {
@@ -521,4 +538,28 @@ public class GameActivity extends DrawerActivity {
         super.onPostCreate(savedInstanceState);
         //drawerToggle.syncState();
     }
+
+    public void onPause () {
+        super.onPause();
+        mediaPlayer.pause();
+    }
+
+
+    public void onResume () {
+        super.onResume();
+        mediaPlayer.start();
+        if (MUTE == 1) {
+            mediaPlayer.pause();
+        }
+    }
+
+
+    public void onDestroy () {
+        super.onDestroy();
+        mediaPlayer.stop();
+        mediaPlayer.release();
+        mediaPlayer = null;
+
+    }
+
 }
